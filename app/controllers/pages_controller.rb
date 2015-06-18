@@ -2,6 +2,15 @@ class PagesController < ApplicationController
   def index
   end
 
-  def about
+  def dashboard
+  end
+
+  def schedule
+  end
+
+  def history
+  end
+
+  def admin
   end
 end
