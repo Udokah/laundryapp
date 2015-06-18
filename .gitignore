@@ -25,3 +25,5 @@ doc/api
 doc/app
 *.swp
 *~
+
+vendor/assets/components
