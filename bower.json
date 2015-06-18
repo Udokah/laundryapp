@@ -1,0 +1,21 @@
+{
+  "name": "washalert",
+  "version": "0.0.1",
+  "homepage": "https://github.com/andela-unkwocha/washalert",
+  "description": "Washing machine users scheduler",
+  "keywords": [
+    "laundry",
+    "wash"
+  ],
+  "authors": [
+    "Nkwocha Udo"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
