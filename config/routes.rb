@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
   get 'pages/index'
 
-  get 'pages/dashboard', :to=> 'pages#dashboard'
+  get 'dashboard', :to=> 'pages#dashboard'
 
-  get 'pages/schedule', :to=> 'pages#schedule'
+  get 'schedule', :to=> 'pages#schedule'
 
-  get 'pages/history', :to=> 'pages#history'
-
-  get 'pages/admin', :to=> 'pages#admin'
+  get 'history', :to=> 'pages#history'
 
   root :to => 'pages#index'
 
