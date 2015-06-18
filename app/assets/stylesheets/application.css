@@ -12,6 +12,7 @@
  *
  *= require foundation/scss/normalize.scss
  *= require foundation/scss/foundation.scss
+ *= require font-awesome/scss/font-awesome.scss
  *= require_tree .
  *= require_self
  */

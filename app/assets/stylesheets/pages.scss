@@ -2,6 +2,43 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.index-page{
-  text-align:center;
+
+@import url(http://fonts.googleapis.com/css?family=Handlee);
+
+$text-color: #fbfcfc;
+$font-handlee: 'Handlee', cursive;
+
+.index-page {
+  position: relative;
+  background-image: image-url("background.jpg");
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 100%;
+
+  .cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .middle {
+    max-width:400px;
+    padding:20px;
+    margin:100px auto;
+    text-align: center !important;
+    h2 {
+      color:$text-color;
+      font-family:$font-handlee;
+      font-size:3.5em;
+    }
+    p {
+      color:$text-color;   
+      font-family: inherit; 
+      font-size:18px; 
+      font-weight: normal;
+    }
+  }
+
 }

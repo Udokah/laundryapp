@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
+
   def index 
+    @page_title = "WashAlert"
   end
 
   def dashboard
@@ -10,4 +12,5 @@ class PagesController < ApplicationController
 
   def history
   end
+
 end
