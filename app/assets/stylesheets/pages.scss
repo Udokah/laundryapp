@@ -10,10 +10,6 @@ $font-handlee: 'Handlee', cursive;
 $gree-color: #27ae60;
 $green-color-deep: #368a55;
 
-$color-info: #85C4ED;
-$color-success: #6FD39A;
-$color-alert: #FF998E;
-$color-dark: #111;
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -53,6 +49,10 @@ $color-dark: #111;
 }
 
 $avatar-size: 4em;
+
+.schedule-page {
+  margin-top: 20px;
+}
 
 .dashboard-page {
 
@@ -131,7 +131,7 @@ $avatar-size: 4em;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  height: 705px;
+  min-height: 500px;
 
   .cover {
     position: absolute;
