@@ -5,8 +5,6 @@ Rails.application.routes.draw do
 
   get 'schedule', :to=> 'pages#schedule'
 
-  get 'history', :to=> 'pages#history'
-
   root :to => 'pages#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

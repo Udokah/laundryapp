@@ -14,9 +14,4 @@ class PagesController < ApplicationController
     @class = "schedule"
   end
 
-  def history
-    @page_title = "Laundry History"
-    @class = "history"
-  end
-
 end
