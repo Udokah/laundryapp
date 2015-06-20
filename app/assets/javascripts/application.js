@@ -10,9 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require turbolinks
-//= require_tree .
 //= require foundation/js/vendor/modernizr.js
 //= require jquery/dist/jquery.min.js
 //= require foundation/js/vendor/fastclick.js
 //= require foundation/js/foundation.min.js
+//= require turbolinks
+//= require_tree .

@@ -2,19 +2,139 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 @import url(http://fonts.googleapis.com/css?family=Handlee);
+@import 'bourbon/app/assets/stylesheets/_bourbon.scss';
 
 $text-color: #fbfcfc;
 $font-handlee: 'Handlee', cursive;
+$gree-color: #27ae60;
+$green-color-deep: #368a55;
+
+$color-info: #85C4ED;
+$color-success: #6FD39A;
+$color-alert: #FF998E;
+$color-dark: #111;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+.apply-font {
+  font-family: $font-handlee !important;
+  font-size:1.2em !important;
+}
+
+.schedule-btn {
+  display: inline-block;
+  font-size: 15px !important;
+  background-color: $gree-color !important;
+  color: $text-color !important;
+  padding:10px 25px !important;
+  line-height: 20px !important;
+  @include border-radius(5px);
+  @include transition(all 0.2s ease-in-out);
+
+  &:hover{
+    background-color: $green-color-deep !important;
+  }
+}
+
+ #mobile-title {
+    margin-left: 50px;
+  }
+
+.views-container{
+  display: block;  
+  height: auto;
+  min-height: 500px;
+}
+
+$avatar-size: 4em;
+
+.dashboard-page {
+
+  .scheduled-sessions {
+    display: block;
+    margin-top: 20px;
+
+    .active{
+      background: rgba(128, 234, 151, 0.3) !important;
+
+      .status{
+        color: #27ae60 !important;
+      }
+    }
+
+    .each {
+      padding: 10px !important;
+      margin-bottom: 1em;
+      background: #ecf0f1;
+      @include border-radius(4px);  
+      @include user-select(none);
+
+      figure {
+        float: left;
+        margin: 0 10px 0 0 !important;
+        display: inline-block;
+        width: $avatar-size;
+        height: $avatar-size;
+        background-image: image-url("photo.jpg");
+        background-size: cover;
+        @include border-radius(100%);      
+      }
+
+      .details {
+        display: inline-block;
+        float: left;
+        width: 70%;
+        margin-top: 5px;
+
+        .name {
+          display: block;
+          font-size: .9em;
+          color: #34495e;
+        }
+
+        .time {
+          font-size:.8em;
+          float: left;
+          color: #7f8c8d;
+        }
+
+        .status {
+          display: inline-block;
+          float: right;
+          font-weight: bold;
+          font-size: .5em;
+          text-transform: uppercase;
+          color: #95a5a6;
+        }
+      }
+
+      .clear{
+          clear: both;
+          display: block;
+        }
+
+      
+
+    }
+
+      
+  }
+
+}
 
 .index-page {
   position: relative;
   background-image: image-url("background.jpg");
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  height: 100%;
+  height: 705px;
 
   .cover {
     position: absolute;
@@ -22,23 +142,20 @@ $font-handlee: 'Handlee', cursive;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
   }
-
   .middle {
-    max-width:400px;
-    padding:20px;
-    margin:100px auto;
+    max-width: 400px;
+    padding: 20px;
+    margin: 100px auto;
     text-align: center !important;
     h2 {
-      color:$text-color;
-      font-family:$font-handlee;
-      font-size:3.5em;
+      color: $text-color;
+      font-size: 3.5em !important;
     }
     p {
-      color:$text-color;   
-      font-family: inherit; 
-      font-size:18px; 
+      color: $text-color;
+      font-family: inherit;
+      font-size: 18px;
       font-weight: normal;
     }
   }
-
 }

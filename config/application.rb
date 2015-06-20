@@ -33,6 +33,6 @@ module Washalert
     config.active_record.raise_in_transactional_callbacks = true
 
     # Bower components
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
   end
 end
