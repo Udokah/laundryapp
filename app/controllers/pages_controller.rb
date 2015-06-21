@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
 
-  include Slack_module
+  require 'Slack'
 
-  @@slack = Slack_module::Slack.new
+  @@slack = Slack.new
 
   def state_cookie
     require 'securerandom'
