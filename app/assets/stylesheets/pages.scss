@@ -23,6 +23,12 @@ $green-color-deep: #368a55;
   font-size:1.2em !important;
 }
 
+.user-info {
+  img {
+    @include border-radius(100%);
+  }
+}
+
 .schedule-btn {
   display: inline-block;
   font-size: 15px !important;

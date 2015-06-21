@@ -29,7 +29,10 @@
       <!-- Mobile Navigation -->
       <aside class="left-off-canvas-menu">
         <ul class="off-canvas-list shared-menu">
-          <%= render "/shared/menu" %>
+        <% if session[:user] then %>
+          <li><a class="user-info"><img src="<%= @user["info"]["profile"]["image_32"] %>" > <%= @user["info"]["real_name"] %> </a> </li>
+        <% end %>
+        <%= render "/shared/menu" %>
         </ul>
       </aside>
 
@@ -53,7 +56,10 @@
 
             <!-- Left Nav Section -->
             <ul class="left shared-menu">
-              <%= render "/shared/menu" %>
+               <% if session[:user] then %>
+                 <li><a class="user-info"><img src="<%= @user["info"]["profile"]["image_32"] %>" > <%= @user["info"]["real_name"] %> </a> </li>
+               <% end %>
+               <%= render "/shared/menu" %>
             </ul>
           </section>
         </nav>

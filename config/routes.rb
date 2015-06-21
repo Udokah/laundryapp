@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'schedule', :to=> 'pages#schedule'
 
+  get 'logout', :to=>'pages#logout'
+
   root :to => 'pages#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

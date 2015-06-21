@@ -9,8 +9,15 @@
   <div class="cover">
     <div class="middle">
       <h2 class="apply-font">LaundryAlert</h2>
-      <p>schedule laundry sessions <%= @state_info  %> </p>
+      <p>schedule laundry sessions</p>
       <a href="<%= @authorization_href %>" class="button round expand"><i class="fa fa-slack"></i> Login with Slack</a>
     </div>
   </div>
 </div>
+
+<script>
+  var authentication = "<%= @auth_status %>";
+  if(authentication == 'false'){
+    alert("Authentication failed, please refresh the page and try again");
+  }
+</script>

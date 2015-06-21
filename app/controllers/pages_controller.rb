@@ -21,7 +21,13 @@ class PagesController < ApplicationController
 
   def index 
     @page_title = "LaundryAlert"
-    @auth_status = false
+    @class = "index"
+    @auth_status = 'false'
+
+    if session[:user] then
+      redirect_to '/dashboard'
+    end
+
     if params.has_key?(:code) && params.has_key?(:state) && cookies[:state] == params[:state]
       get_token = @@slack.get_token(params[:code]) # get access token
       if get_token["ok"] then
@@ -32,14 +38,15 @@ class PagesController < ApplicationController
           if user_info["ok"] then
             session[:user] = { :info  => user_info["user"], 
                                :token => get_token["access_token"], 
-                               :team  => auth_user[:team_id] }
-            @auth_status = true
+                               :team  => auth_user["team_id"] }
+            @auth_status = 'true'
             redirect_to '/dashboard'
           end
         end
       end
       @authorization_href = "Javascript:void()"
     else
+      @auth_status = 'true'
       @authorization_href = @@slack.get_auth_href(state_cookie)
     end
   end
@@ -48,12 +55,21 @@ class PagesController < ApplicationController
     authenticate_user
     @page_title = "Dashboard"
     @class = "dashboard"
+    @user = session[:user]
   end
 
   def schedule
     authenticate_user
     @page_title = "My Schedule"
     @class = "schedule"
+    @user = session[:user]  
+  end
+
+  def logout
+    if session[:user] then
+      session.delete(:user)
+    end
+    redirect_to '/'
   end
 
 end
