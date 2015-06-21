@@ -32,8 +32,8 @@ module Washalert
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    # Load my modules
-    config.autoload_paths += %W(#{config.root}/lib)
+    # Load my classes
+    config.autoload_paths + %W(#{config.root}/app/classes)
 
     # Bower components
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
