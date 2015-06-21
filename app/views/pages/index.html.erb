@@ -9,8 +9,8 @@
   <div class="cover">
     <div class="middle">
       <h2 class="apply-font">LaundryAlert</h2>
-      <p>schedule laundry sessions</p>
-      <a href="/dashboard" class="button round expand"><i class="fa fa-slack"></i> Login with Slack</a>
+      <p>schedule laundry sessions <%= @slack_response %> </p>
+      <a id="slack-btn" data-state="<%= @state %>" class="button round expand"><i class="fa fa-slack"></i> Login with Slack</a>
     </div>
   </div>
 </div>
