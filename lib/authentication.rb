@@ -1,7 +1,6 @@
 module Authentication
 
-  class user
+  class User
     
   end
-
 end

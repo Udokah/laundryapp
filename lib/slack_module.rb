@@ -7,10 +7,29 @@ module Slack_module
     CLIENT_ID = "2853699384.6656542565"
     CLIENT_SECRET = "af815ec827e76c467c752eb6b15ce6e0"
     CLIENT_TEAM = "Andela"
+    CLIENT_SCOPE = 'read,identify,client,post'
     URL = Hash[ "oauth_access" => "https://slack.com/api/oauth.access",
                 "authorize"    => "https://slack.com/oauth/authorize",
                 "auth_test"    => "https://slack.com/api/auth.test",
-                "users_info"   => "https://slack.com/api/users.info" ]
+                "user_info"   => "https://slack.com/api/users.info" ]
+
+    # generate authorizaton href
+    def get_auth_href(state)
+      uri = URI.parse(URL["authorize"])
+      params = { :client_id => CLIENT_ID,
+                 :state     => state,
+                 :team      => CLIENT_TEAM,
+                 :scope     => CLIENT_SCOPE }
+      uri.query = URI.encode_www_form( params )
+      return uri
+    end
+
+    def get_user_info(token, user_id)
+      uri = URI.parse(URL["user_info"])
+      params = { :token => token, :user => user_id }
+      uri.query = URI.encode_www_form( params )
+      return JSON.parse( uri.open.read )
+    end
 
     # Get the access token            
     def get_token(code)
@@ -24,7 +43,7 @@ module Slack_module
     end
 
     # get users information
-    def get_user_info(access_token)
+    def auth_user(access_token)
       uri = URI.parse(URL["auth_test"])
       params = { :token => access_token }
       uri.query = URI.encode_www_form( params )
