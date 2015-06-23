@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'schedule/create'
+
   get 'pages/index'
 
   get 'dashboard', :to=> 'pages#dashboard'
