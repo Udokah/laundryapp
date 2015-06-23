@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   require 'Slack'
 
   @@slack = Slack.new
+  @@schedule = Schedule.new
 
   def state_cookie
     require 'securerandom'
@@ -19,10 +20,21 @@ class PagesController < ApplicationController
     end
   end
 
+  def get_schedule_status
+    if @@schedule.hasScheduled?
+      btn_class = "secondary disabled"
+    else
+      btn_class = "success"
+    end
+    return btn_class
+  end
+
   def index 
     @page_title = "LaundryAlert"
     @class = "index"
     @auth_status = 'false'
+    @schedule_btn_class = get_schedule_status
+    @host = request.host
 
     if session[:user] then
       redirect_to '/dashboard'
@@ -56,13 +68,19 @@ class PagesController < ApplicationController
     @page_title = "Dashboard"
     @class = "dashboard"
     @user = session[:user]
+    @schedule_btn_class = get_schedule_status 
+    @host = request.base_url
+
   end
 
   def schedule
     authenticate_user
     @page_title = "My Schedule"
     @class = "schedule"
-    @user = session[:user]  
+    @user = session[:user]
+    @schedule_btn_class = get_schedule_status 
+    @host = request.base_url
+    
   end
 
   def logout

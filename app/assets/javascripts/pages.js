@@ -3,6 +3,7 @@
 $(document).ready(function(){
   var menu = $('.shared-menu');
   var topBanner = $('.top-banner');
+  var scheduleBtn = $('.schedule-btn');
 
   /**
    * Loop through links
@@ -14,7 +15,17 @@ $(document).ready(function(){
     }
   });
 
+  /**
+   * Schedule button is clicked
+   */
+  scheduleBtn.on('click', function(e){
+    e.preventDefault();
+    if(!$(this).hasClass('disabled')){
+      var url = $(this).attr('href') + '/' + 'schedule/create';
+      $.post(url, function(response){
+        console.log(response);
+      });
+    }
+  });
+
 }); 
-
-
-

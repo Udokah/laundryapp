@@ -29,19 +29,13 @@ $green-color-deep: #368a55;
   }
 }
 
-.schedule-btn {
-  display: inline-block;
-  font-size: 15px !important;
-  background-color: $gree-color !important;
-  color: $text-color !important;
-  padding:10px 25px !important;
-  line-height: 20px !important;
-  @include border-radius(5px);
-  @include transition(all 0.2s ease-in-out);
+.schedule-btn-mobile {
+  padding: 10px 15px !important;
+}
 
-  &:hover{
-    background-color: $green-color-deep !important;
-  }
+.schedule-btn-desktop {
+  padding: 11px 35px 27px 31px !important;
+  margin-top: -8px;
 }
 
  #mobile-title {
@@ -66,24 +60,35 @@ $avatar-size: 4em;
     display: block;
     margin-top: 20px;
 
-    .active{
-      background: rgba(128, 234, 151, 0.3) !important;
+    .active {
+      $border: 1px solid #2ecc71 !important;
+      figure {
+        border: $border;
+      }
 
-      .status{
-        color: #27ae60 !important;
+      .details {
+        .name {
+          border-bottom: $border;
+        }
+        .status {
+          color: #2ecc71 !important;
+        }
       }
     }
 
     .each {
       padding: 10px !important;
       margin-bottom: 1em;
-      background: #ecf0f1;
       @include border-radius(4px);  
       @include user-select(none);
 
+      $border: 1px solid #7f8c8d;
+
       figure {
         float: left;
-        margin: 0 10px 0 0 !important;
+        margin: 0 0px 0 0 !important;
+        border: $border;
+        padding: 5px;
         display: inline-block;
         width: $avatar-size;
         height: $avatar-size;
@@ -101,11 +106,18 @@ $avatar-size: 4em;
         .name {
           display: block;
           font-size: .9em;
-          color: #34495e;
+          color: #7f8c8d;
+          margin-top:-2px;
+          padding-left: 1em;
+          padding-bottom: 4px;
+          border-bottom: $border;
         }
 
         .time {
-          font-size:.8em;
+          display: inline-block;
+          margin-top: 5px;
+          margin-left: 1.2em;
+          font-size:.7em;
           float: left;
           color: #7f8c8d;
         }

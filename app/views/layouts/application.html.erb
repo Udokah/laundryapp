@@ -22,7 +22,8 @@
         </section>
 
         <section class="right tab-bar-section">
-          <a href="" class="schedule-btn"><i class="fa fa-calendar"></i> schedule</a>
+          <a href="<%= @host %>" class="button <%= @schedule_btn_class %> radius schedule-btn-mobile schedule-btn"><i class="fa fa-calendar"></i> schedule</a>
+          <!-- <a href="" class="schedule-btn"><i class="fa fa-calendar"></i> schedule</a> -->
         </section>
       </nav>
 
@@ -51,7 +52,7 @@
           <section class="top-bar-section" style="padding-right:10px;">
             <!-- Right Nav Section -->
             <ul class="right">
-              <li><a href="#" style="margin-top:2px;" class="schedule-btn"><i class="fa fa-calendar"></i>  schedule</a></li>
+              <a href="<%= @host %>" class="button <%= @schedule_btn_class %> radius schedule-btn-desktop schedule-btn"><i class="fa fa-calendar"></i> schedule</a>
             </ul>
 
             <!-- Left Nav Section -->
