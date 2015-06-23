@@ -4,8 +4,8 @@ class PagesController < ApplicationController
 
   @@slack = Slack.new
   @@schedule = Schedule.new
-
-  def state_cookie
+ 
+  private def state_cookie
     require 'securerandom'
     if not cookies[:state] then
       random = SecureRandom.hex(10)
@@ -14,13 +14,13 @@ class PagesController < ApplicationController
     return cookies[:state]
   end
 
-  def authenticate_user
+  private def authenticate_user
     if session[:user] == nil then
       redirect_to '/'
     end
   end
 
-  def get_schedule_status
+  private def get_schedule_status
     if @@schedule.hasScheduled?
       btn_class = "secondary disabled"
     else
@@ -68,9 +68,8 @@ class PagesController < ApplicationController
     @page_title = "Dashboard"
     @class = "dashboard"
     @user = session[:user]
-    @schedule_btn_class = get_schedule_status 
+    @schedule_btn_class = get_schedule_status
     @host = request.base_url
-
   end
 
   def schedule
@@ -78,9 +77,8 @@ class PagesController < ApplicationController
     @page_title = "My Schedule"
     @class = "schedule"
     @user = session[:user]
-    @schedule_btn_class = get_schedule_status 
+    @schedule_btn_class = get_schedule_status
     @host = request.base_url
-    
   end
 
   def logout
