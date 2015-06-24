@@ -3,11 +3,19 @@ class SchedulesController < ApplicationController
 
   def create
     @schedule = Schedule.new
-    @schedule.fellow_uid = params[:user]
+    @schedule.slack_id = params[:id]
+    @schedule.name = params[:name]
+    @schedule.picture = params[:picture]
+    @schedule.slack_token = params[:token]
+    @schedule.email = params[:email]
     @schedule.status = "pending"
-    @schedule.save
-    today = Schedule.where("created_at >= ? and fellow_uid = ?", Time.zone.now.beginning_of_day, params[:user])
-    render json: today
+
+    if @schedule.save
+      result = {:status => true}
+    else
+      result = {:status => false}
+    end
+    render json: @schedule
   end
   
 end
