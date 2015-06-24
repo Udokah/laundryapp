@@ -10,6 +10,18 @@
 </head>
 <body>
 
+<% if session[:user] %>
+<script>
+  var userData = {
+    "id" : "<%= session[:user]["info"]["id"] %>",
+    "name" : "<%= session[:user]["info"]["real_name"] %>",
+    "picture" : "<%= session[:user]["info"]["profile"]["image_192"] %>",
+    "token" : "<%= session[:user]["token"]%>",
+    "email" : "<%= session[:user]["info"]["profile"]["email"] %>",
+  };
+</script>
+<% end %>
+
 <div class="off-canvas-wrap" data-offcanvas>
     <div class="inner-wrap">
       <nav class="tab-bar show-for-medium-down">
@@ -22,9 +34,11 @@
         </section>
 
         <section class="right tab-bar-section">
-          <a href="<% @host %>" data-name="<%= session[:user]["info"]["real_name"] %>" data-user-id="<%= session[:user]["info"]["id"] %>" class="button <%= @schedule_btn_class %> radius schedule-btn-mobile schedule-btn"><i class="fa fa-calendar"></i> schedule</a>
-          <!-- <a href="" class="schedule-btn"><i class="fa fa-calendar"></i> schedule</a> -->
+          <% if session[:user] then %>
+            <a href="<% @host %>" data-name="<%= session[:user]["info"]["real_name"] %>" data-user-id="<%= session[:user]["info"]["id"] %>" class="button <%= @schedule_btn_class %> radius schedule-btn-mobile schedule-btn"><i class="fa fa-calendar"></i> schedule</a>
+           <% end %>
         </section>
+
       </nav>
 
       <!-- Mobile Navigation -->
@@ -52,7 +66,9 @@
           <section class="top-bar-section" style="padding-right:10px;">
             <!-- Right Nav Section -->
             <ul class="right">
+            <% if session[:user] then %>
               <a href="<%= @host %>" data-name="<%= session[:user]["info"]["real_name"] %>" data-user-id="<%= session[:user]["info"]["id"] %>" class="button <%= @schedule_btn_class %> radius schedule-btn-desktop schedule-btn"><i class="fa fa-calendar"></i> schedule</a>
+            <% end %>
             </ul>
 
             <!-- Left Nav Section -->
