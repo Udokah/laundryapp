@@ -5,6 +5,12 @@ $(document).ready(function(){
   var topBanner = $('.top-banner');
   var scheduleBtn = $('.schedule-btn');
 
+  if(CURRENT_PAGE == 'dashboard'){
+    setTimeout(function(){
+      window.location.reload(1);
+    }, 30000); //refresh every 30 seconds
+  }
+
   /**
    * Loop through links
    * and make current page active
@@ -25,7 +31,7 @@ $(document).ready(function(){
       var url = $(this).attr('href') + '/' + 'schedule/create';
       $.post(url, userData, function(response){
         $(this).removeAttr('disabled');
-        response.status ? location.reload() : console.log(false);
+        response.status ? location.reload() : console.log(response.status);
       });
     }
   });
