@@ -56,6 +56,20 @@ $avatar-size: 4em;
 
 .dashboard-page {
 
+    .session-count {
+    margin-top: 20px;
+    padding-right: 153px;
+
+    span {
+      display: inline-block;
+    }
+
+    .label {
+      font-size: 16px !important;
+      padding:8px 10px !important;
+    }
+  }
+
   .scheduled-sessions {
     display: block;
     margin-top: 20px;

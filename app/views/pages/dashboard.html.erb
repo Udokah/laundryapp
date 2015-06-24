@@ -1,11 +1,16 @@
 <div class="row dashboard-page">
   <div class="small-12 medium-9 large-9 small-centered columns">
 
+<% if @today.length > 0 %>
+
+  <div class="session-count text-right">
+    <span class="label"><%= @today.length %> sessions scheduled</span>
+  </div>
+
     <!-- Show All schedules -->
     <section class="scheduled-sessions">
-    
     <% @today.each do |data| %>
-      <div class="each">
+      <div class="each <%= data.status %>">
         <figure style="background-image: url('<%= data.picture %>')"></figure>
         <div class="details">
           <span class="name"><%= data.name %></span>
@@ -15,8 +20,15 @@
         <div class="clear"></div>
       </div>
     <% end %>
-
     </section>
+
+<% else %>
+
+  <div class="session-count text-center">
+    <span class="label secondary">No sessions have been scheduled today <i class="fa fa-smile-o"></i></span>
+  </div>
+
+<% end %>
 
   </div>
 </div>
