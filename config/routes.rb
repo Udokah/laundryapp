@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  post 'schedule/create', :to=> 'schedule#create'
+  
+  post 'schedule/create', :to=> 'schedules#create'
 
   get 'pages/index'
 
