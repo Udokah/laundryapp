@@ -22,10 +22,10 @@ $(document).ready(function(){
     e.preventDefault();
     if(!$(this).hasClass('disabled')){
       var url = $(this).attr('href') + '/' + 'schedule/create';
-      $.post(url, function(response){
+      var userId = $(this).attr('data-user-id');
+      $.post(url, { user: userId }, function(response){
         console.log(response);
       });
     }
   });
-
 }); 

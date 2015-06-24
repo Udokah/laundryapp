@@ -3,38 +3,14 @@ class PagesController < ApplicationController
   require 'Slack'
 
   @@slack = Slack.new
-  @@schedule = Schedule.new
  
-  private def state_cookie
-    require 'securerandom'
-    if not cookies[:state] then
-      random = SecureRandom.hex(10)
-      cookies[:state] = { :value => random, :expires => 2.minutes.from_now }
-    end
-    return cookies[:state]
-  end
-
-  private def authenticate_user
-    if session[:user] == nil then
-      redirect_to '/'
-    end
-  end
-
-  private def get_schedule_status
-    if @@schedule.hasScheduled?
-      btn_class = "secondary disabled"
-    else
-      btn_class = "success"
-    end
-    return btn_class
-  end
-
   def index 
     @page_title = "LaundryAlert"
     @class = "index"
     @auth_status = 'false'
     @schedule_btn_class = get_schedule_status
     @host = request.host
+    @user_id = nil
 
     if session[:user] then
       redirect_to '/dashboard'
@@ -50,7 +26,7 @@ class PagesController < ApplicationController
           if user_info["ok"] then
             session[:user] = { :info  => user_info["user"], 
                                :token => get_token["access_token"], 
-                               :team  => auth_user["team_id"] }
+                               :team  => auth_user["team_id"]}
             @auth_status = 'true'
             redirect_to '/dashboard'
           end
@@ -70,8 +46,9 @@ class PagesController < ApplicationController
     @user = session[:user]
     @schedule_btn_class = get_schedule_status
     @host = request.base_url
+    @today = Schedule.where("created_at >= ?", Time.zone.now.beginning_of_day)
   end
-
+ 
   def schedule
     authenticate_user
     @page_title = "My Schedule"
@@ -86,6 +63,31 @@ class PagesController < ApplicationController
       session.delete(:user)
     end
     redirect_to '/'
+  end
+
+  private
+  def state_cookie
+    require 'securerandom'
+    if not cookies[:state] then
+      random = SecureRandom.hex(10)
+      cookies[:state] = { :value => random, :expires => 2.minutes.from_now }
+    end
+    return cookies[:state]
+  end
+
+  def authenticate_user
+    if session[:user] == nil then
+      redirect_to '/'
+    end
+  end
+
+  def get_schedule_status
+    btn_class = "secondary disabled"
+    today = Schedule.where("created_at >= ? and fellow_uid = ?", Time.zone.now.beginning_of_day, params[:user])
+    if today.length > 0 then
+      btn_class = "success"
+    end
+    return btn_class
   end
 
 end

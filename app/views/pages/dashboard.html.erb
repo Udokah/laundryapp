@@ -1,40 +1,20 @@
 <div class="row dashboard-page">
   <div class="small-12 medium-9 large-9 small-centered columns">
-
+  
     <!-- Show All schedules -->
     <section class="scheduled-sessions">
 
-      <div class="each active">
+    <% @today.each do |data| %>
+      <div class="each">
         <figure></figure>
         <div class="details">
           <span class="name">John Snow</span>
-          <span class="time">6mins ago</span>
-          <span class="status">active</span>
+          <span class="timeago"><%= time_ago_in_words(data.created_at) %> ago</span>
+          <span class="status"><%= data.status %></span>
         </div>
         <div class="clear"></div>
       </div>
-
-
-      <div class="each">
-        <figure></figure>
-        <div class="details">
-          <span class="name">Stannis Beratian</span>
-          <span class="time">6mins ago</span>
-          <span class="status">pending</span>
-        </div>
-        <div class="clear"></div>
-      </div>
-
-
-      <div class="each">
-        <figure></figure>
-        <div class="details">
-          <span class="name">Taiwan Lannister</span>
-          <span class="time">6mins ago</span>
-          <span class="status">pending</span>
-        </div>
-        <div class="clear"></div>
-      </div>
+    <% end %>
 
     </section>
 
