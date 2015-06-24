@@ -172,3 +172,26 @@ $avatar-size: 4em;
     }
   }
 }
+
+footer {
+  display: block;
+  background-color: #ecf0f1;
+  width: 100%;
+  position: absolute;
+  bottom:0;
+  padding:8px;
+  text-align: center;
+  font-size: 12px;
+  color: #95a5a6;
+
+  .fa{
+    color: #e74c3c;
+  }
+}
+
+
+
+
+
+
+
