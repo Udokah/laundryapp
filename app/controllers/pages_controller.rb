@@ -83,8 +83,8 @@ class PagesController < ApplicationController
 
   def get_schedule_status
     btn_class = "secondary disabled"
-    today = Schedule.where("created_at >= ? and fellow_uid = ?", Time.zone.now.beginning_of_day, params[:user])
-    if today.length > 0 then
+    today = Schedule.where("created_at >= ? and slack_id = ?", Time.zone.now.beginning_of_day, params[:user])
+    if today.length >= 0 then
       btn_class = "success"
     end
     return btn_class

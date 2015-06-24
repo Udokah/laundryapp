@@ -6,9 +6,9 @@
 
     <% @today.each do |data| %>
       <div class="each">
-        <figure></figure>
+        <figure style="background-image: url('<%= data.picture %>')"></figure>
         <div class="details">
-          <span class="name">John Snow</span>
+          <span class="name"><%= data.name %></span>
           <span class="timeago"><%= time_ago_in_words(data.created_at) %> ago</span>
           <span class="status"><%= data.status %></span>
         </div>
