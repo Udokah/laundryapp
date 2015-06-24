@@ -22,7 +22,6 @@
     "jquery": "~2.1.4",
     "foundation": "~5.5.2",
     "font-awesome": "~4.3.0",
-    "bourbon": "~4.2.3",
-    "timeago": "~1.4.1"
+    "bourbon": "~4.2.3"
   }
 }
