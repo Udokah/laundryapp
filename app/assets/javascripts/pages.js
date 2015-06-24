@@ -20,11 +20,12 @@ $(document).ready(function(){
    */
   scheduleBtn.on('click', function(e){
     e.preventDefault();
+    $(this).attr('disabled','disabled');
     if(!$(this).hasClass('disabled')){
       var url = $(this).attr('href') + '/' + 'schedule/create';
-      var userId = $(this).attr('data-user-id');
-      $.post(url, { user: userId }, function(response){
-        console.log(response);
+      $.post(url, userData, function(response){
+        $(this).removeAttr('disabled');
+        response.status ? location.reload() : console.log(false);
       });
     }
   });
