@@ -7,22 +7,26 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon -->
+  <%= favicon_link_tag 'favicon.ico' %>
+
 </head>
 <body>
 
-<% if session[:user] %>
-<script>
-  var userData = {
-    "id" : "<%= session[:user]["info"]["id"] %>",
-    "name" : "<%= session[:user]["info"]["real_name"] %>",
-    "picture" : "<%= session[:user]["info"]["profile"]["image_192"] %>",
-    "token" : "<%= session[:user]["token"]%>",
-    "email" : "<%= session[:user]["info"]["profile"]["email"] %>",
-  };
-</script>
-<% end %>
+  <% if session[:user] %>
+  <script>
+    var userData = {
+      "id"      : "<%= session[:user]["info"]["id"] %>",
+      "name"    : "<%= session[:user]["info"]["real_name"] %>",
+      "picture" : "<%= session[:user]["info"]["profile"]["image_192"] %>",
+      "token"   : "<%= session[:user]["token"]%>",
+      "email"   : "<%= session[:user]["info"]["profile"]["email"] %>",
+    };
+  </script>
+  <% end %>
 
-<div class="off-canvas-wrap" data-offcanvas>
+  <div class="off-canvas-wrap" data-offcanvas>
     <div class="inner-wrap">
       <nav class="tab-bar show-for-medium-down">
         <section class="left-small">
@@ -35,8 +39,8 @@
 
         <section class="right tab-bar-section">
           <% if session[:user] then %>
-            <a href="<% @host %>" data-name="<%= session[:user]["info"]["real_name"] %>" data-user-id="<%= session[:user]["info"]["id"] %>" class="button <%= @schedule_btn_class %> radius schedule-btn-mobile schedule-btn"><i class="fa fa-calendar"></i> schedule</a>
-           <% end %>
+          <a href="<% @host %>" data-name="<%= session[:user]["info"]["real_name"] %>" data-user-id="<%= session[:user]["info"]["id"] %>" class="button <%= @schedule_btn_class %> radius schedule-btn-mobile schedule-btn"><i class="fa fa-calendar"></i> schedule</a>
+          <% end %>
         </section>
 
       </nav>
@@ -44,10 +48,10 @@
       <!-- Mobile Navigation -->
       <aside class="left-off-canvas-menu">
         <ul class="off-canvas-list shared-menu">
-        <% if session[:user] then %>
+          <% if session[:user] then %>
           <li><a class="user-info"><img src="<%= @user["info"]["profile"]["image_32"] %>" > <%= @user["info"]["real_name"] %> </a> </li>
-        <% end %>
-        <%= render "/shared/menu" %>
+          <% end %>
+          <%= render "/shared/menu" %>
         </ul>
       </aside>
 
@@ -66,35 +70,39 @@
           <section class="top-bar-section" style="padding-right:10px;">
             <!-- Right Nav Section -->
             <ul class="right">
-            <% if session[:user] then %>
+              <% if session[:user] then %>
               <a href="<%= @host %>" data-name="<%= session[:user]["info"]["real_name"] %>" data-user-id="<%= session[:user]["info"]["id"] %>" class="button <%= @schedule_btn_class %> radius schedule-btn-desktop schedule-btn"><i class="fa fa-calendar"></i> schedule</a>
-            <% end %>
+              <% end %>
             </ul>
 
             <!-- Left Nav Section -->
             <ul class="left shared-menu">
-               <% if session[:user] then %>
-                 <li><a class="user-info"><img src="<%= @user["info"]["profile"]["image_32"] %>" > <%= @user["info"]["real_name"] %> </a> </li>
-               <% end %>
-               <%= render "/shared/menu" %>
-            </ul>
-          </section>
-        </nav>
+             <% if session[:user] then %>
+             <li><a class="user-info"><img src="<%= @user["info"]["profile"]["image_32"] %>" > <%= @user["info"]["real_name"] %> </a> </li>
+             <% end %>
+             <%= render "/shared/menu" %>
+           </ul>
+         </section>
+       </nav>
 
-        <div class="views-container">
-          <%= yield %>
-        </div>
+       <div class="views-container">
+        <%= yield %>
+      </div>
 
-      </section>
+    </section>
 
-      <a class="exit-off-canvas"></a>
+    <a class="exit-off-canvas"></a>
 
-    </div>
   </div>
+</div>
 
-  <script>
-   var CURRENT_PAGE = "<%= @class %>"
-  </script>
+<footer>
+  Made with <i class="fa fa-heart"></i> by <a href="https://twitter.com/thisisudo">Udo</a>
+</footer>
+
+<script>
+ var CURRENT_PAGE = "<%= @class %>"
+</script>
 
 
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
