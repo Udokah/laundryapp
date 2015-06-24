@@ -20,9 +20,11 @@ ActiveRecord::Schema.define(version: 20150624120640) do
     t.string   "slack_id"
     t.string   "name"
     t.string   "picture"
+    t.string   "slack_token"
+    t.string   "email"
     t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

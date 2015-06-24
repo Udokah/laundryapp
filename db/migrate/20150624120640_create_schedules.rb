@@ -4,6 +4,8 @@ class CreateSchedules < ActiveRecord::Migration
       t.string :slack_id
       t.string :name
       t.string :picture
+      t.string :slack_token
+      t.string :email
       t.string :status
       t.timestamps null: false
     end
