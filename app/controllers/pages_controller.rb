@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   require 'Slack'
 
   @@slack = Slack.new
- 
+
   def index 
     @page_title = "LaundryAlert"
     @class = "index"
@@ -25,15 +25,15 @@ class PagesController < ApplicationController
           user_info = @@slack.get_user_info( get_token["access_token"], auth_user["user_id"] )
           if user_info["ok"] then
             session[:user] = { :info  => user_info["user"], 
-                               :token => get_token["access_token"], 
-                               :team  => auth_user["team_id"]}
-            @auth_status = 'true'
-            redirect_to '/dashboard'
-          end
-        end
-      end
-      @authorization_href = "Javascript:void()"
-    else
+             :token => get_token["access_token"], 
+             :team  => auth_user["team_id"]}
+             @auth_status = 'true'
+             redirect_to '/dashboard'
+           end
+         end
+       end
+       @authorization_href = "Javascript:void()"
+     else
       @auth_status = 'true'
       @authorization_href = @@slack.get_auth_href(state_cookie)
     end
@@ -46,9 +46,9 @@ class PagesController < ApplicationController
     @user = session[:user]
     @schedule_btn_class = get_schedule_btn_class
     @host = request.base_url
-    @today = Schedule.where("created_at >= ?", Time.zone.now.beginning_of_day)
+    @today = Schedule.where("created_at >= ? and status != ?", Time.zone.now.beginning_of_day, "done")
   end
- 
+
   def schedule
     authenticate_user
     @page_title = "My Schedule"
@@ -56,6 +56,8 @@ class PagesController < ApplicationController
     @user = session[:user]
     @schedule_btn_class = get_schedule_btn_class
     @host = request.base_url
+    @has_scheduled = has_scheduled?
+    @schedule_is_active = schedule_is_active?
   end
 
   def logout
@@ -84,12 +86,23 @@ class PagesController < ApplicationController
   def has_scheduled?
     status = false;
     if session[:user] then 
-      today = Schedule.where("created_at >= ? and slack_id = ?", Time.zone.now.beginning_of_day, session[:user]["info"]["id"])
-      if today.length >= 1 then
+      qry = Schedule.where("created_at >= ? and slack_id = ?", Time.zone.now.beginning_of_day, session[:user]["info"]["id"])
+      if qry.length >= 1 then
         status = true;
       end
     end
-      return status
+    return status
+  end
+
+  def schedule_is_active?
+    status = false;
+    if session[:user] then 
+      qry = Schedule.where("created_at >= ? and slack_id = ? and status = ?", Time.zone.now.beginning_of_day, session[:user]["info"]["id"], "active")
+      if qry.length >= 1 then
+        status = true
+      end
+    end
+    return status
   end
 
   def get_schedule_btn_class
