@@ -58,6 +58,10 @@ class PagesController < ApplicationController
     @host = request.base_url
     @has_scheduled = has_scheduled?
     @schedule_is_active = schedule_is_active?
+    @todays_schedule = nil
+    if @has_scheduled then
+      @todays_schedule = Schedule.where("created_at >= ? and slack_id = ? and status != ?", Time.zone.now.beginning_of_day, session[:user]["info"]["id"], "done")
+    end
   end
 
   def logout
@@ -83,10 +87,14 @@ class PagesController < ApplicationController
     end
   end
 
+  def current_schedule
+    qry = Schedule.where("")
+  end
+
   def has_scheduled?
     status = false;
     if session[:user] then 
-      qry = Schedule.where("created_at >= ? and slack_id = ?", Time.zone.now.beginning_of_day, session[:user]["info"]["id"])
+      qry = Schedule.where("created_at >= ? and slack_id = ? and status != ?", Time.zone.now.beginning_of_day, session[:user]["info"]["id"], "done")
       if qry.length >= 1 then
         status = true;
       end
