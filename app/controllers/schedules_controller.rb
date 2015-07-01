@@ -1,16 +1,15 @@
 class SchedulesController < ApplicationController
   protect_from_forgery
   require 'pry'
+  require 'slack'
 
   def create
     @schedule = Schedule.new
     @schedule.status = "pending"
     today = Schedule.where("created_at >= ? and status != ?", Time.zone.now.beginning_of_day, "done")
-
     if today.length == 0 then
       @schedule.status = "active"
     end
-    
     @schedule.slack_id = params[:id]
     @schedule.name = params[:name]
     @schedule.picture = params[:picture]
@@ -24,7 +23,12 @@ class SchedulesController < ApplicationController
     render json: @schedule
   end
 
-  def cancel
+  def done
+    id = params[:id]
+    # Schedule.update(id, status: 'done')
+    person = Schedule.where(["created_at >= ? and status != ?", Time.zone.now.beginning_of_day, "done"]).first
+    # binding.pry
+    # Get next person
   end
   
 end
