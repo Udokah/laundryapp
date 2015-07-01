@@ -47,9 +47,11 @@ $(document).ready(function(){
     if(CURRENT_PAGE == 'schedule'){
       $(this).attr('disabled','disabled');
       var url = $(this).attr('href') + '/' + 'schedule/done'; 
+      var id = $(this).attr('data-sid');
       $.ajax({
         url: url,
         type: 'PUT',
+        data: {'id' : id},
         success: function(response){
           if(response.successful){
             sessionActiveDiv.fadeOut('fast', function(){
@@ -61,7 +63,4 @@ $(document).ready(function(){
 
     }
   });
-
-
-
 }); 
