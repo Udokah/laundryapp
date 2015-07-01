@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     @page_title = "LaundryAlert"
     @class = "index"
     @auth_status = 'false'
-    @schedule_btn_class = get_schedule_status
+    @schedule_btn_class = get_schedule_btn_class
     @host = request.host
     @user_id = nil
 
@@ -44,7 +44,7 @@ class PagesController < ApplicationController
     @page_title = "Dashboard"
     @class = "dashboard"
     @user = session[:user]
-    @schedule_btn_class = get_schedule_status
+    @schedule_btn_class = get_schedule_btn_class
     @host = request.base_url
     @today = Schedule.where("created_at >= ?", Time.zone.now.beginning_of_day)
   end
@@ -54,7 +54,7 @@ class PagesController < ApplicationController
     @page_title = "My Schedule"
     @class = "schedule"
     @user = session[:user]
-    @schedule_btn_class = get_schedule_status
+    @schedule_btn_class = get_schedule_btn_class
     @host = request.base_url
   end
 
@@ -81,13 +81,21 @@ class PagesController < ApplicationController
     end
   end
 
-  def get_schedule_status
-    btn_class = "success"
+  def has_scheduled?
+    status = false;
     if session[:user] then 
       today = Schedule.where("created_at >= ? and slack_id = ?", Time.zone.now.beginning_of_day, session[:user]["info"]["id"])
       if today.length >= 1 then
-        btn_class = "secondary disabled" 
+        status = true;
       end
+    end
+      return status
+  end
+
+  def get_schedule_btn_class
+    btn_class = "success"
+    if has_scheduled? then
+      btn_class = "secondary disabled" 
     end
     return btn_class
   end
