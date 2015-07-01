@@ -13,9 +13,9 @@ $green-color-deep: #368a55;
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
 }
 
 .apply-font {
@@ -38,9 +38,9 @@ $green-color-deep: #368a55;
   margin-top: -8px;
 }
 
- #mobile-title {
-    margin-left: 50px;
-  }
+#mobile-title {
+  margin-left: 50px;
+}
 
 .views-container {
   display: block;  
@@ -52,11 +52,19 @@ $avatar-size: 4em;
 
 .schedule-page {
   margin-top: 20px;
+
+  #session-done {
+    display: none;
+  }
+
+  .fa-thumbs-up {
+    color: $gree-color !important;
+  }
 }
 
 .dashboard-page {
 
-    .session-count {
+  .session-count {
     margin-top: 20px;
     padding-right: 153px;
 
@@ -147,9 +155,9 @@ $avatar-size: 4em;
       }
 
       .clear{
-          clear: both;
-          display: block;
-        }
+        clear: both;
+        display: block;
+      }
     }
   }
 
