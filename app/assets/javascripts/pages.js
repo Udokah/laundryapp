@@ -4,6 +4,9 @@ $(document).ready(function(){
   var menu = $('.shared-menu');
   var topBanner = $('.top-banner');
   var scheduleBtn = $('.schedule-btn');
+  var doneBtn = $('#am-done-btn');
+  var sessionActiveDiv = $('#session-active');
+  var sessionDoneDiv = $('#session-done');
 
   if(CURRENT_PAGE == 'dashboard'){
     setTimeout(function(){
@@ -35,4 +38,30 @@ $(document).ready(function(){
       });
     }
   });
+
+  /**
+   * When am done button is clicked
+   */
+  doneBtn.on('click', function(e){
+    e.preventDefault();
+    if(CURRENT_PAGE == 'schedule'){
+      $(this).attr('disabled','disabled');
+      var url = $(this).attr('href') + '/' + 'schedule/done'; 
+      $.ajax({
+        url: url,
+        type: 'PUT',
+        success: function(response){
+          if(response.successful){
+            sessionActiveDiv.fadeOut('fast', function(){
+              sessionDoneDiv.fadeIn('fast');
+            });
+          }
+        }
+      });
+
+    }
+  });
+
+
+
 }); 
