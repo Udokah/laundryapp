@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   post 'schedule/create', :to=> 'schedules#create'
 
+  put  'schedule/done', :to=> 'schedules#done'
+
   get 'pages/index'
 
   get 'dashboard', :to=> 'pages#dashboard'
