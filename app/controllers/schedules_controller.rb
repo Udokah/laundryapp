@@ -4,8 +4,8 @@ class SchedulesController < ApplicationController
 
   def create
     @schedule = Schedule.new
-    today = Schedule.where("created_at >= ?", Time.zone.now.beginning_of_day)
     @schedule.status = "pending"
+    today = Schedule.where("created_at >= ? and status != ?", Time.zone.now.beginning_of_day, "done")
 
     if today.length == 0 then
       @schedule.status = "active"
@@ -22,6 +22,9 @@ class SchedulesController < ApplicationController
       result = {:status => false}
     end
     render json: @schedule
+  end
+
+  def cancel
   end
   
 end
