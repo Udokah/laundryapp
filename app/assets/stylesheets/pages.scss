@@ -53,7 +53,8 @@ $avatar-size: 4em;
 .schedule-page {
   margin-top: 20px;
 
-  #session-done {
+  #session-done, 
+  #session-canceled {
     display: none;
   }
 
