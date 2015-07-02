@@ -3,10 +3,15 @@
 
     <% if @has_scheduled && !@schedule_is_active %>
 
-    <div class="panel callout radius text-center">
+    <div id="cancel-session" class="panel callout radius text-center">
       <p>Please wait for a bit the laundry machine is still in use</p>
-      <a href="" class="button alert radius small"><i class="fa fa-times"></i> cancel my session</a>
+      <a id="cancel-btn" href="<%= @host %>" data-sid="<%= @todays_schedule[0].id %>" class="button alert radius small"><i class="fa fa-times"></i> cancel my session</a>
     </div>
+
+    <div id="session-canceled" class="panel radius text-center">
+    <i class="fa fa-user-times fa-3x"></i>
+    <p>Your session has been canceled</p>
+  </div>
 
     <% elsif @has_scheduled && @schedule_is_active %>
 
