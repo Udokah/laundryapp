@@ -41,7 +41,7 @@ class PagesController < ApplicationController
 
   def dashboard
     authenticate_user
-    @page_title = "Dashboard"
+    @page_title = "Dashboard | Laundry LaundryAlert"
     @class = "dashboard"
     @user = session[:user]
     @schedule_btn_class = get_schedule_btn_class
@@ -51,7 +51,7 @@ class PagesController < ApplicationController
 
   def schedule
     authenticate_user
-    @page_title = "My Schedule"
+    @page_title = "My Schedule | Laundry LaundryAlert"
     @class = "schedule"
     @user = session[:user]
     @schedule_btn_class = get_schedule_btn_class
