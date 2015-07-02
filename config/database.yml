@@ -84,4 +84,5 @@ production:
   <<: *default
   database: d3g56m8qaanjmq
   username: exqsiyneckykfr
+  host: ec2-54-83-18-87.compute-1.amazonaws.com
   password: <%= ENV['DATABASE_PASSWORD'] %>
