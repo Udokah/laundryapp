@@ -27,6 +27,8 @@ class SchedulesController < ApplicationController
     id = params[:id]
     # Schedule.update(id, status: 'done')
     person = Schedule.where(["created_at >= ? and status != ?", Time.zone.now.beginning_of_day, "done"]).first
+    # Make next person active
+    Schedule.update(person.id, status: 'active')
     # binding.pry
     # Get next person
   end
