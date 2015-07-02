@@ -1,7 +1,9 @@
 class SchedulesController < ApplicationController
   protect_from_forgery
-  require 'pry'
   require 'slack'
+  require 'pry'
+
+  @@slack = Slack.new
 
   def create
     @schedule = Schedule.new
@@ -25,12 +27,15 @@ class SchedulesController < ApplicationController
 
   def done
     id = params[:id]
-    # Schedule.update(id, status: 'done')
-    person = Schedule.where(["created_at >= ? and status != ?", Time.zone.now.beginning_of_day, "done"]).first
+    Schedule.update(id, status: 'done')
+    next_person = Schedule.where(["created_at >= ? and status != ?", Time.zone.now.beginning_of_day, "done"]).first
+    
     # Make next person active
-    Schedule.update(person.id, status: 'active')
-    # binding.pry
-    # Get next person
+    if next_person then
+      Schedule.update(next_person.id, status: 'active')
+    end
+    @@slack.send_dm(next_person)
+    render json: {:successful => true}
   end
   
 end
