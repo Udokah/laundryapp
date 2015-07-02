@@ -82,6 +82,6 @@ test:
 #
 production:
   <<: *default
-  database: washalert_production
-  username: washalert
+  database: d3g56m8qaanjmq
+  username: exqsiyneckykfr
   password: <%= ENV['WASHALERT_DATABASE_PASSWORD'] %>
