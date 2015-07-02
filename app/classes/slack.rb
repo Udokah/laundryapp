@@ -9,7 +9,12 @@ class Slack
   URL = Hash[ "oauth_access" => "https://slack.com/api/oauth.access",
               "authorize"    => "https://slack.com/oauth/authorize",
               "auth_test"    => "https://slack.com/api/auth.test",
-              "user_info"   => "https://slack.com/api/users.info" ]
+              "user_info"    => "https://slack.com/api/users.info" ]
+
+  # Send DM to user
+  def send_slack_dm(user)
+    
+  end
 
   # generate authorizaton href
   def get_auth_href(state)
