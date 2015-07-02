@@ -51,7 +51,7 @@ $(document).ready(function(){
     e.preventDefault();
     if(CURRENT_PAGE == 'schedule'){
       $(this).attr('disabled','disabled');
-      var url = $(this).attr('href') + '/' + 'schedule/done'; 
+      var url = $(this).attr('href') + '/' + 'schedule/cancel'; 
       var id = $(this).attr('data-sid');
       $.ajax({
         url: url,
