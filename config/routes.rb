@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  delete 'schedule/cancel', :to=> 'schedules#cancel'
   
   post 'schedule/create', :to=> 'schedules#create'
 
