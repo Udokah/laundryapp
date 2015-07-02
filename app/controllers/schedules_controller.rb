@@ -25,6 +25,12 @@ class SchedulesController < ApplicationController
     render json: @schedule
   end
 
+  def cancel
+    id = params[:id]
+    Schedule.destroy(id)
+    render json: {:successful => true}
+  end
+
   def done
     id = params[:id]
     Schedule.update(id, status: 'done')
