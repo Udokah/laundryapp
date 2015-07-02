@@ -32,15 +32,15 @@ class SchedulesController < ApplicationController
   end
 
   def done
-    id = params[:id]
-    Schedule.update(id, status: 'done')
+    Schedule.update(params[:schedule_id], status: 'done')
     next_person = Schedule.where(["created_at >= ? and status != ?", Time.zone.now.beginning_of_day, "done"]).first
     
     # Make next person active
     if next_person then
       Schedule.update(next_person.id, status: 'active')
+      notify = @@slack.send_dm(params , next_person)
     end
-    @@slack.send_dm(next_person)
+    
     render json: {:successful => true}
   end
   
