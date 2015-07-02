@@ -1,6 +1,7 @@
 class Slack
   require 'uri'
   require 'open-uri'
+  require 'pry'
 
   CLIENT_ID = "2853699384.6656542565"
   CLIENT_SECRET = "af815ec827e76c467c752eb6b15ce6e0"
@@ -12,8 +13,9 @@ class Slack
               "user_info"    => "https://slack.com/api/users.info" ]
 
   # Send DM to user
-  def send_slack_dm(user)
-    
+  def send_dm(user)
+    # send dm to user in slack
+    return user
   end
 
   # generate authorizaton href
