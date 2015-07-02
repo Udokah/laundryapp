@@ -46,7 +46,7 @@ class PagesController < ApplicationController
     @user = session[:user]
     @schedule_btn_class = get_schedule_btn_class
     @host = request.base_url
-    @today = Schedule.where("created_at >= ? and status != ?", Time.zone.now.beginning_of_day, "done")
+    @today = Schedule.where("created_at >= ? and status != ?", Time.zone.now.beginning_of_day, "done").order("created_at")
   end
 
   def schedule
