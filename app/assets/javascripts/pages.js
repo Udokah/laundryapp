@@ -5,8 +5,13 @@ $(document).ready(function(){
   var topBanner = $('.top-banner');
   var scheduleBtn = $('.schedule-btn');
   var doneBtn = $('#am-done-btn');
+  var cancelBtn = $('#cancel-btn');
+
   var sessionActiveDiv = $('#session-active');
   var sessionDoneDiv = $('#session-done');
+  var cancelSessionDiv = $('#cancel-session');
+  var sessionCanceledDiv = $('#session-canceled');
+
 
   if(CURRENT_PAGE == 'dashboard'){
     setTimeout(function(){
@@ -35,6 +40,30 @@ $(document).ready(function(){
       $.post(url, userData, function(response){
         $(this).removeAttr('disabled');
         response.status ? location.reload() : console.log(response.status);
+      });
+    }
+  });
+
+  /**
+   * Cancel button is clicked
+   */
+  cancelBtn.on('click', function(e){
+    e.preventDefault();
+    if(CURRENT_PAGE == 'schedule'){
+      $(this).attr('disabled','disabled');
+      var url = $(this).attr('href') + '/' + 'schedule/done'; 
+      var id = $(this).attr('data-sid');
+      $.ajax({
+        url: url,
+        type: 'DELETE',
+        data: {'id': id},
+        success: function(response){
+          if(response.successful){
+            cancelSessionDiv.fadeOut('fast', function(){
+              sessionCanceledDiv.fadeIn('fast');
+            });
+          }
+        }
       });
     }
   });
