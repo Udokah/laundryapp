@@ -21,6 +21,10 @@ $green-color-deep: #368a55;
 .apply-font {
   font-family: $font-handlee !important;
   font-size:1.2em !important;
+
+  img{
+    width: 40px;
+  }
 }
 
 .user-info {
