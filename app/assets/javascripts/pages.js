@@ -76,11 +76,11 @@ $(document).ready(function(){
     if(CURRENT_PAGE == 'schedule'){
       $(this).attr('disabled','disabled');
       var url = $(this).attr('href') + '/' + 'schedule/done'; 
-      var id = $(this).attr('data-sid');
+      userData.schedule_id = $(this).attr('data-sid');
       $.ajax({
         url: url,
         type: 'PUT',
-        data: {'id' : id},
+        data: userData,
         success: function(response){
           if(response.successful){
             sessionActiveDiv.fadeOut('fast', function(){
