@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   @@slack = Slack.new
 
   def index 
-    @page_title = "LaundryAlert"
+    @page_title = "LaundryApp"
     @class = "index"
     @auth_status = 'false'
     @schedule_btn_class = get_schedule_btn_class
@@ -41,7 +41,7 @@ class PagesController < ApplicationController
 
   def dashboard
     authenticate_user
-    @page_title = "Dashboard | Laundry LaundryAlert"
+    @page_title = "Dashboard | LaundryApp"
     @class = "dashboard"
     @user = session[:user]
     @schedule_btn_class = get_schedule_btn_class
@@ -51,7 +51,7 @@ class PagesController < ApplicationController
 
   def schedule
     authenticate_user
-    @page_title = "My Schedule | Laundry LaundryAlert"
+    @page_title = "My Schedule | LaundryApp"
     @class = "schedule"
     @user = session[:user]
     @schedule_btn_class = get_schedule_btn_class
