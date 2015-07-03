@@ -14,7 +14,7 @@ class Slack
                         "im_close"     => "https://slack.com/api/im.close",
                         "post_msg"     => "https://slack.com/api/chat.postMessage" ]
   BOT_TOKEN     = "xoxb-7148934290-kxwGuq6ZIsRwHQ3QU3eOgOkf"
-  BOT_USERNAME  = "laundryalertbot"
+  BOT_USERNAME  = "laundryappbot"
 
   # Send DM to user
   def send_dm(current_user , next_user)
