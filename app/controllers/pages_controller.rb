@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  require 'Slack'
+  require 'slack'
 
   @@slack = Slack.new
 
