@@ -83,7 +83,7 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: d3g56m8qaanjmq
-  username: exqsiyneckykfr
-  host: ec2-54-83-18-87.compute-1.amazonaws.com
+  database: d9k780ean0787b
+  username: ehqwqvzrobyuik
+  host: ec2-54-204-26-8.compute-1.amazonaws.com
   password: <%= ENV['DATABASE_PASSWORD'] %>
