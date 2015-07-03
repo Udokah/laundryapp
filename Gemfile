@@ -3,9 +3,6 @@ source 'https://rubygems.org'
 # Ruby version
 ruby '2.2.2'
 
-# Rename gem
-gem 'rename'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.2'
 # Use postgresql as the database for Active Record
