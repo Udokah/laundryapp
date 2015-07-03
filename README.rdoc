@@ -1,3 +1,3 @@
-== Laundry Alert
+== Laundry App
 
 Schedule sessions to use the laundry machine
