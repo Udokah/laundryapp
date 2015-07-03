@@ -49,3 +49,5 @@ group :development, :test do
 end
 
 gem "rspec-rails", :group => [:development, :test]
+
+gem 'rails_12factor', group: :production
