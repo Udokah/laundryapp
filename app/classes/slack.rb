@@ -5,7 +5,7 @@ class Slack
   CLIENT_ID     = "2853699384.6656542565"
   CLIENT_SECRET = "af815ec827e76c467c752eb6b15ce6e0"
   CLIENT_TEAM   = "T02R3LKBA"
-  CLIENT_SCOPE  = 'identify,post'
+  CLIENT_SCOPE  = 'identify'
   URL           = Hash[ "oauth_access" => "https://slack.com/api/oauth.access",
                         "authorize"    => "https://slack.com/oauth/authorize",
                         "auth_test"    => "https://slack.com/api/auth.test",
