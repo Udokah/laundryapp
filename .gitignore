@@ -25,3 +25,7 @@ doc/api
 doc/app
 *.swp
 *~
+
+# ide files
+.idea/
+/.idea
