@@ -74,9 +74,9 @@ class PagesController < ApplicationController
   private
   def state_cookie
     require 'securerandom'
-    if not cookies[:state] then
+    unless cookies[:state] then
       random = SecureRandom.hex(10)
-      cookies[:state] = { :value => random, :expires => 2.minutes.from_now }
+      cookies[:state] = {:value => random, :expires => 2.minutes.from_now}
     end
     return cookies[:state]
   end
